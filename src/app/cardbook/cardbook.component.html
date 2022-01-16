@@ -1,3 +1,5 @@
-<p>
-  cardbook works!
-</p>
+<div class=flex>
+  <div class="card" *ngFor="let card of data;">
+    <img class="resize" src="{{backendUrl}}/card/{{card}}">
+  </div>
+</div>
