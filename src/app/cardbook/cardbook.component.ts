@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { CardbookService } from './cardbook.service';
+
 
 @Component({
   selector: 'app-cardbook',
@@ -7,26 +9,22 @@ import {Http, Response} from '@angular/http';
   styleUrls: ['./cardbook.component.css']
 })
 export class CardbookComponent implements OnInit {
-  title = 'app works!';
-  loading: boolean;
-  data: string;
+
+  data: Array<string> = [];
+  error: any;
   backendUrl = "http://localhost:8000"
 
-  constructor(private http: Http) {
-  }
+  constructor(private cardbookService: CardbookService) {}
 
   ngOnInit() {
-    this.cards(1);
+    this.showCards()
   }
 
-
-  cards(page: number): void {
-    this.loading = true;
-    this.http.request(`${this.backendUrl}/cards?page=${page}`)
-    .subscribe((res: Response) => {
-      this.data = res.json();
-      console.log(this.data)
-      this.loading = false;
-    });
+  showCards() {
+    this.cardbookService.getCards(1)
+      .subscribe({
+        next: (data: Array<string>) => this.data = data, // success path
+        error: (error => this.error = error) // error path
+      });
   }
 }

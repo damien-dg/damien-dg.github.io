@@ -1,22 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardbookComponent } from './cardbook/cardbook.component';
 import { DecklistComponent } from './decklist/decklist.component';
+import { CardbookComponent } from './cardbook/cardbook.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardbookComponent,
-    DecklistComponent
+    DecklistComponent,
+    CardbookComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

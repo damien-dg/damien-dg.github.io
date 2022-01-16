@@ -1,5 +1,6 @@
-<div class=flex>
-  <div class="card" *ngFor="let card of data;">
-    <img class="resize" src="{{backendUrl}}/card/{{card}}">
+<div class=flex *ngIf="data">
+    <div class="card" *ngFor="let card of data;">
+     <img class="resize" src="{{card}}">
+    </div>
   </div>
-</div>
+  <p *ngIf="error" class="error">{{error | json}}</p>
