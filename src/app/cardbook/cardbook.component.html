@@ -1,6 +1,15 @@
-<div class=flex *ngIf="data">
-    <div class="card" *ngFor="let card of data;">
-     <img class="resize" src="{{card}}">
+<div class="flex-container">
+    <div class="flex-icon">
+        <img src="/assets/left_arrow.png" class="icon">
+
     </div>
-  </div>
-  <p *ngIf="error" class="error">{{error | json}}</p>
+    <div class="flex" *ngIf="data">
+        <div class="card" *ngFor="let card of data;">
+            <img class="resize" src="{{card}}">
+        </div>
+    </div>
+    <p *ngIf="error" class="error">{{error | json}}</p>
+    <div class="flex-icon">
+        <img src="/assets/right_arrow.png" class="icon">
+    </div>
+</div>

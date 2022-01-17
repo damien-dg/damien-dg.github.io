@@ -6,7 +6,7 @@ import { CardbookService } from './cardbook.service';
 @Component({
   selector: 'app-cardbook',
   templateUrl: './cardbook.component.html',
-  styleUrls: ['./cardbook.component.css']
+  styleUrls: ['./cardbook.component.scss']
 })
 export class CardbookComponent implements OnInit {
 

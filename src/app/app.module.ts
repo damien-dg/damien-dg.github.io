@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DecklistComponent } from './decklist/decklist.component';
 import { CardbookComponent } from './cardbook/cardbook.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbSidebarModule.forRoot(),
+    NbLayoutModule,
+    NbCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
