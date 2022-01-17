@@ -1,15 +1,15 @@
 <div class="flex-container">
-    <div class="flex-icon">
-        <img src="/assets/left_arrow.png" class="icon">
-
+    <div class="flex-icon" (click)="showCards(page-1)">
+        <img *ngIf="page != 1" src="/assets/left_arrow.png" class="icon">
+        <img *ngIf="page == 1" src="/assets/left_arrow.png" class="icon hidden">
     </div>
     <div class="flex" *ngIf="data">
         <div class="card" *ngFor="let card of data;">
-            <img class="resize" src="{{card}}">
+            <img class="resize clickable" src="{{card}}" (click)="addCardToDecklist(card)">
         </div>
     </div>
     <p *ngIf="error" class="error">{{error | json}}</p>
-    <div class="flex-icon">
+    <div class="flex-icon" (click)="showCards(page+1)">
         <img src="/assets/right_arrow.png" class="icon">
     </div>
 </div>
