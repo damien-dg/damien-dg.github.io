@@ -8,5 +8,6 @@ export class DecklistService {
   decklist: Map<string, number>;
   constructor() { 
     this.decklist = new Map<string, number>();
+
   }
 }

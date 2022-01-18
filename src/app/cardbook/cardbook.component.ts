@@ -49,6 +49,7 @@ export class CardbookComponent implements OnInit {
           next: (data: Array<string>) => this.data = data, // success path
           error: (error => this.error = error) // error path
         });
+
     }
   }
 }

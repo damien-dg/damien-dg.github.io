@@ -9,10 +9,12 @@ import { DecklistService } from './decklist.service';
 })
 export class DecklistComponent implements OnInit {
 
+
   cardList: Map<string, number>;
   constructor(public decklistService: DecklistService, private cardbookService: CardbookService) { 
     this.cardList = decklistService.decklist
   }
+
 
 
   ngOnInit(): void {
