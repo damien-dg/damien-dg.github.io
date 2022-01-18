@@ -1,1 +1,8 @@
-<p>decklist works!</p>
+    <div *ngFor="let item of cardList | keyvalue" class="flex-container">
+        <div class="flex">
+            <img src="{{getCardUrl(item.key)}}" class="decklist-item">
+        </div>
+        <div class="flex-icon">
+            {{item.value}}
+        </div>
+    </div>

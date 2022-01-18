@@ -16,14 +16,17 @@ export class CardbookService {
   
   getCards(page: number) {
     return this.http.get<Array<string>>(`${this.backendUrl}/cards?page=${page}`)
-      .pipe(map((cards: Array<string>) => cards.map(card => `${this.backendUrl}/card/${card}`)))
       .pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
       );
   }
 
-  
+  getCardUrl( card: string) {
+    let url = `${this.backendUrl}/card/${card}`;
+    return url;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
