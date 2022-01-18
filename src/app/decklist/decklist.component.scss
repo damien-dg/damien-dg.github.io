@@ -1,7 +1,29 @@
 img.decklist-item{
-    width: 200px; /* width of container */
-    height: 30px; /* height of container */
+
+    width: 250px; /* width of container */
+    height: 19px; /* height of container */
     object-fit: cover;
     object-position: 0% 2%; /* try 20px 10px */ 
-    border: 5px solid black;
+}
+
+.flex {
+	display: flex;
+	align-items: left;
+	justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+}
+.flex-icon {
+    display: flex;
+	justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left: 1em;
+    width:5%;
+}
+
+.flex-container{
+    display:flex;
+    flex-direction:row;
+
 }

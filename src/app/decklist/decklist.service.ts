@@ -5,8 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class DecklistService {
 
-  decklist: Array<string>;
+  decklist: Map<string, number>;
   constructor() { 
-    this.decklist = [];
+    this.decklist = new Map<string, number>();
+
   }
 }
