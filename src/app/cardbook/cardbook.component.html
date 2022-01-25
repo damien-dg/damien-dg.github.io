@@ -5,7 +5,7 @@
     </div>
     <div class="flex" *ngIf="data">
         <div class="card" *ngFor="let card of data;">
-            <img class="resize clickable" src="{{getCardUrl(card)}}" (click)="addCardToDecklist(card)">
+            <img [ngClass]="isMaxClass(card)" class="resize clickable" src="{{getCardUrl(card)}}" (click)="addCardToDecklist(card)">
         </div>
     </div>
     <p *ngIf="error" class="error">{{error | json}}</p>

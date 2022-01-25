@@ -51,3 +51,8 @@ img.hidden {
 flex: 1 0 calc(50% - 1rem);
 margin: 0 0.5rem;
 }
+
+.max-added {
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1);
+}

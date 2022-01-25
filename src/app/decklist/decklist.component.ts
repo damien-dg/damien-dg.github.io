@@ -15,7 +15,17 @@ export class DecklistComponent implements OnInit {
     this.cardList = decklistService.decklist
   }
 
+  getCurrentDeckSize(){
+    return this.decklistService.decklist.size;
+  }
 
+  getMaxDeckSize(){
+    return this.decklistService.maxDeckSize;
+  }
+
+  saveDeck() {
+    this.decklistService.saveDeck();
+  }
 
   ngOnInit(): void {
   }

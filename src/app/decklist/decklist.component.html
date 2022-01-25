@@ -1,4 +1,5 @@
-
+    <div class="flex">{{getCurrentDeckSize()}}/{{getMaxDeckSize()}}</div>
+    <button class="flex" (click)="saveDeck()">Save Deck</button>
     <div *ngFor="let item of cardList | keyvalue" class="flex-container">
         <div class="flex">
             <img src="{{getCardUrl(item.key)}}" class="decklist-item">

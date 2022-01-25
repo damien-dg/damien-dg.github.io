@@ -32,13 +32,40 @@ export class CardbookComponent implements OnInit {
     if (currentCard) {
       let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
       let deckCard = this.decklistService.decklist.get(card);
-      if (!deckCard) {
-        this.decklistService.decklist.set(card, 1)
-      }
-      else if (deckCard < maxCopiesInDeck) {
-        this.decklistService.decklist.set(card, deckCard + 1)
+      if (this.decklistService.decklist.size < this.decklistService.maxDeckSize) {
+        if (!deckCard) {
+          this.decklistService.decklist.set(card, 1)
+        }
+        else if (deckCard < maxCopiesInDeck) {
+          this.decklistService.decklist.set(card, deckCard + 1)
+        }
       }
     }
+  }
+
+  isMaxClass(card: string) {
+    if (this.isMaxed(card)) {
+      return "max-added"
+    }
+    return ""
+  }
+
+  isMaxed(card: string) {
+    card = card.split("/")[card.split("/").length - 1];
+    let currentCard = this.metadataService.metadata.get(card);
+    if (currentCard) {
+      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
+      let deckCard = this.decklistService.decklist.get(card);
+      if (!deckCard) {
+        return false;
+      }
+      else if (deckCard >= maxCopiesInDeck) {
+        {
+          return true;
+        }
+      }
+    }
+    return false
   }
 
   showCards(page: number) {
