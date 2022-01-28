@@ -14,7 +14,6 @@ export class CardbookComponent implements OnInit {
 
   data: Array<string> = [];
   error: any;
-  backendUrl = "http://localhost:8000"
   page: number = 1;
 
   constructor(private cardbookService: CardbookService, private decklistService: DecklistService, private metadataService: MetadataService) { }

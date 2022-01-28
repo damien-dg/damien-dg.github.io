@@ -9,7 +9,7 @@ import { catchError, retry, map } from 'rxjs/operators';
 })
 export class CardbookService {
 
-  backendUrl: string = "http://localhost:8000"
+  backendUrl: string = "/backend"
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class CardbookService {
   }
 
   getCardUrl( card: string) {
-    let url = `${this.backendUrl}/card/${card}`;
+    let url = `/static/cards/${card}`;
     return url;
   }
 
