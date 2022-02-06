@@ -31,7 +31,7 @@ export class CardbookComponent implements OnInit {
     if (currentCard) {
       let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
       let deckCard = this.decklistService.decklist.get(card);
-      if (this.decklistService.decklist.size < this.decklistService.maxDeckSize) {
+      if (this.decklistService.currentDeckSize() < this.decklistService.maxDeckSize) {
         if (!deckCard) {
           this.decklistService.decklist.set(card, 1)
         }
@@ -41,6 +41,20 @@ export class CardbookComponent implements OnInit {
       }
     }
   }
+
+  removeFromDecklist(card: string) {
+    card = card.split("/")[card.split("/").length - 1];
+    let deckCard = this.decklistService.decklist.get(card);
+    if (deckCard) {
+      if (deckCard > 1) {
+        this.decklistService.decklist.set(card, deckCard - 1);
+      } else if (deckCard == 1) {
+        this.decklistService.decklist.delete(card);
+      }
+    }
+    return false;
+  }
+
 
   isMaxClass(card: string) {
     if (this.isMaxed(card)) {

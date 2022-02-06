@@ -16,7 +16,7 @@ export class DecklistComponent implements OnInit {
   }
 
   getCurrentDeckSize(){
-    return this.decklistService.decklist.size;
+    return this.decklistService.currentDeckSize();
   }
 
   getMaxDeckSize(){
