@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/deckbuilder",
+            "outputPath": "docs",
             "allowedCommonJsDependencies": [
               "ts-google-drive"
            ],
