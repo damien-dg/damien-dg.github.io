@@ -27,7 +27,7 @@ export class CardbookService {
       console.log(this.cardMetadata)
       let currentCardList = new Array<Card>();
       for (let meta of this.cardMetadata) {
-        let card = new Card(meta.link, meta.tags);
+        let card = new Card(meta.link, meta.tags, meta.height, meta.width);
         currentCardList.push(card)
       }
       this.cards = currentCardList;

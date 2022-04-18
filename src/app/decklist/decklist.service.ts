@@ -43,11 +43,11 @@ export class DecklistService {
       var firstCard = decklist.entries().next().value[0]
       myImage.src =  firstCard.link;
       myImage.crossOrigin = "anonymous";
-      let cardHeight = myImage.height;
-      let cardWidth = myImage.width;
+      let cardHeight = firstCard.height;
+      let cardWidth = firstCard.width;
       canvas.height = cardHeight * 7;
       canvas.width = cardWidth * 10;
-      let canvasAspectRatio = canvas.height / canvas.width;
+
       var cardPaddingX = (canvas.width - 10*cardWidth) / 20
       var cardPaddingY = (canvas.height - 7*cardHeight) / 14
       context.fillStyle = "#808080"
@@ -91,22 +91,6 @@ export class DecklistService {
             if (doneLoad) {
               var base64 = canvas.toDataURL("image/png");
               downloadURI(base64, "deck.png");
-              // var img=new Image();
-              // var origingalCanvas = canvas;
-              // img.onload=function(){
-              //     var canvas = document.createElement("canvas");
-              //     var context = canvas.getContext("2d");
-              //     if (context) {
-              //       context.fillStyle = "#fff";
-              //       context.fill();
-              //       canvas.width= 4096;
-              //       canvas.height= 4096 * canvasAspectRatio;
-              //       context.drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-              //       let dataUrl = canvas.toDataURL();
-
-              //     }
-              // }
-              // img.src=base64;
             }
           }
           cardImage.onload = null;
