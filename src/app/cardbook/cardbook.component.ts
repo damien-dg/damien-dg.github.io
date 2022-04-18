@@ -14,7 +14,7 @@ export class CardbookComponent {
 
   error: any;
   page: number = 1;
-  maxCopieInDeck: number = 4
+  maxCopiesInDeck: number = 4
 
   constructor(private cardbookService: CardbookService, private decklistService: DecklistService, private metadataService: MetadataService) { }
 
@@ -32,10 +32,10 @@ export class CardbookComponent {
     }
   }
   addCardToDecklist(card: Card) {
-    let maxCopiesInDeck = this.maxCopieInDeck;
+    let maxCopiesInDeck = this.maxCopiesInDeck;
     let currentCard = this.metadataService.metadata.get(card);
     if (currentCard) {
-      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 2;
+      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || this.maxCopiesInDeck;
     }
 
     let deckCard = this.decklistService.decklist.get(card);
@@ -72,9 +72,9 @@ export class CardbookComponent {
 
   isMaxed(card: Card) {
     let currentCard = this.metadataService.metadata.get(card);
-    let maxCopiesInDeck: number | string[] = this.maxCopieInDeck
+    let maxCopiesInDeck: number | string[] = this.maxCopiesInDeck
     if (currentCard) {
-      maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
+      maxCopiesInDeck = currentCard.get("max_copies_in_deck") || this.maxCopiesInDeck;
     }
       let deckCard = this.decklistService.decklist.get(card);
       if (!deckCard) {
