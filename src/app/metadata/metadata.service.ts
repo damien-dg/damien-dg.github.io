@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
+import { Card } from '../card';
 import { CardbookService } from '../cardbook/cardbook.service';
 
 
@@ -9,25 +10,10 @@ import { CardbookService } from '../cardbook/cardbook.service';
 })
 export class MetadataService {
 
-  metadata: Map<string, Map<string,number | Array<string>>> = new Map<string, Map<string,number | Array<string>>>();
+  metadata: Map<Card, Map<string,number | Array<string>>> = new Map<Card, Map<string,number | Array<string>>>();
   error: any;
 
   constructor(private http: HttpClient, private cardbookService: CardbookService) { 
-    let resp = this.http.get(`${cardbookService.backendUrl}/card-metadata`)
-    .pipe(
-      retry(3), // retry a failed request up to 3 times
-      catchError(this.handleError) // then handle the error
-    ).subscribe({
-          next: (data: Object) =>{
-            let map = new Map();
-            for (let entry of Object.entries(data)) {
-             let tags = new Map(Object.entries(entry[1]))
-              map.set(entry[0], tags);
-            }
-            this.metadata = map;
-          }, // success path
-          error: (error => this.error = error) // error path
-    })
     
   }
 

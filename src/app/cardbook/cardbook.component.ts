@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { CardbookService } from './cardbook.service';
 import { DecklistService } from '../decklist/decklist.service';
 import { MetadataService } from '../metadata/metadata.service';
+import { Card } from '../card';
 
 
 @Component({
@@ -10,40 +10,46 @@ import { MetadataService } from '../metadata/metadata.service';
   templateUrl: './cardbook.component.html',
   styleUrls: ['./cardbook.component.scss']
 })
-export class CardbookComponent implements OnInit {
+export class CardbookComponent {
 
-  data: Array<string> = [];
   error: any;
   page: number = 1;
 
   constructor(private cardbookService: CardbookService, private decklistService: DecklistService, private metadataService: MetadataService) { }
 
-  getCardUrl(card: string) {
-    return this.cardbookService.getCardUrl(card);
-  }
-  ngOnInit() {
-    this.showCards(1);
+
+  cards () {
+    return this.cardbookService.getCards() 
   }
 
-  addCardToDecklist(card: string) {
-    card = card.split("/")[card.split("/").length - 1];
-    let currentCard = this.metadataService.metadata.get(card);
-    if (currentCard) {
-      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
-      let deckCard = this.decklistService.decklist.get(card);
-      if (this.decklistService.currentDeckSize() < this.decklistService.maxDeckSize) {
-        if (!deckCard) {
-          this.decklistService.decklist.set(card, 1)
-        }
-        else if (deckCard < maxCopiesInDeck) {
-          this.decklistService.decklist.set(card, deckCard + 1)
-        }
-      }
+  nextPage () {
+    this.page += 1
+  }
+  prevPage () {
+    if (this.page >= 1) {
+      this.page -=1;
     }
   }
+  addCardToDecklist(card: Card) {
+    let maxCopiesInDeck = 2;
+    let currentCard = this.metadataService.metadata.get(card);
+    if (currentCard) {
+      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 2;
+    }
 
-  removeFromDecklist(card: string) {
-    card = card.split("/")[card.split("/").length - 1];
+    let deckCard = this.decklistService.decklist.get(card);
+    if (this.decklistService.currentDeckSize() < this.decklistService.maxDeckSize) {
+      if (!deckCard) {
+        this.decklistService.decklist.set(card, 1)
+      }
+      else if (deckCard < maxCopiesInDeck) {
+        this.decklistService.decklist.set(card, deckCard + 1)
+      }
+    }
+    
+  }
+
+  removeFromDecklist(card: Card) {
     let deckCard = this.decklistService.decklist.get(card);
     if (deckCard) {
       if (deckCard > 1) {
@@ -56,18 +62,19 @@ export class CardbookComponent implements OnInit {
   }
 
 
-  isMaxClass(card: string) {
+  isMaxClass(card: Card) {
     if (this.isMaxed(card)) {
       return "max-added"
     }
     return ""
   }
 
-  isMaxed(card: string) {
-    card = card.split("/")[card.split("/").length - 1];
+  isMaxed(card: Card) {
     let currentCard = this.metadataService.metadata.get(card);
+    let maxCopiesInDeck: number | string[] = 2
     if (currentCard) {
-      let maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
+      maxCopiesInDeck = currentCard.get("max_copies_in_deck") || 0;
+    }
       let deckCard = this.decklistService.decklist.get(card);
       if (!deckCard) {
         return false;
@@ -77,19 +84,6 @@ export class CardbookComponent implements OnInit {
           return true;
         }
       }
-    }
     return false
-  }
-
-  showCards(page: number) {
-    if (page >= 1) {
-      this.page = page
-      this.cardbookService.getCards(this.page)
-        .subscribe({
-          next: (data: Array<string>) => this.data = data, // success path
-          error: (error => this.error = error) // error path
-        });
-
-    }
   }
 }

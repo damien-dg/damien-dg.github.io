@@ -21,6 +21,9 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/deckbuilder",
+            "allowedCommonJsDependencies": [
+              "ts-google-drive"
+           ],
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

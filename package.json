@@ -8,6 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "browser": {
+    "tls": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
@@ -21,9 +24,24 @@
     "@angular/router": "~13.1.0",
     "@nebular/eva-icons": "9.0.0",
     "@nebular/theme": "^9.0.0",
+    "@skpm/child_process": "github:skpm/child_process",
+    "assert": "^2.0.0",
+    "browserify-fs": "^1.0.0",
+    "crypto-browserify": "^3.12.0",
     "eva-icons": "^1.1.2",
+    "google-auth-library": "^7.12.0",
+    "https-browserify": "^1.0.0",
+    "net-browserify": "^0.2.4",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "rxjs": "~7.4.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "text-from-image": "^1.1.1",
+    "timers-browserify": "^2.0.12",
+    "ts-google-drive": "^0.0.6",
     "tslib": "^2.3.0",
+    "util": "^0.12.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

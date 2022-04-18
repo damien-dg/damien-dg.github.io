@@ -2,7 +2,7 @@
     <button class="flex" (click)="saveDeck()">Save Deck</button>
     <div *ngFor="let item of cardList | keyvalue" class="flex-container">
         <div class="flex">
-            <img src="{{getCardUrl(item.key)}}" class="decklist-item">
+            <img src="{{item.key.link}}" class="decklist-item">
         </div>
         <div class="flex-icon">
             {{item.value}}

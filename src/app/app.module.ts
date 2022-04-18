@@ -7,12 +7,14 @@ import { DecklistComponent } from './decklist/decklist.component';
 import { CardbookComponent } from './cardbook/cardbook.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DecklistComponent,
-    CardbookComponent
+    CardbookComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

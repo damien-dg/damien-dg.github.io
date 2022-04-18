@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from '../card';
 import { CardbookService } from '../cardbook/cardbook.service';
 import { DecklistService } from './decklist.service';
 
@@ -10,7 +11,7 @@ import { DecklistService } from './decklist.service';
 export class DecklistComponent implements OnInit {
 
 
-  cardList: Map<string, number>;
+  cardList: Map<Card, number>;
   constructor(public decklistService: DecklistService, private cardbookService: CardbookService) { 
     this.cardList = decklistService.decklist
   }
@@ -28,10 +29,6 @@ export class DecklistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  getCardUrl(card: string) {
-    return this.cardbookService.getCardUrl(card);
   }
 
 }

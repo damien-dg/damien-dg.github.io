@@ -3,7 +3,48 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "stream": [
+        "./node_modules/stream-browserify",
+      ],
+      "path": [
+        "./node_modules/path-browserify",
+      ],
+      "assert": [
+        "./node_modules/assert"
+      ],
+      "util": [
+        "./node_modules/util"
+      ],
+      "crypto": [
+        "./node_modules/crypto-browserify"
+      ],
+      "os": [
+        "./node_modules/os-browserify/browser"
+      ],
+      "https": [
+        "./node_modules/https-browserify"
+      ],
+      "http": [
+        "./node_modules/stream-http"
+      ],
+      "net": [
+        "./node_modules/net-browserify"
+      ],
+      "fs": [
+        "./node_modules/browserify-fs"
+      ],
+      "timers": [
+        "./node_modules/timers-browserify"
+      ],
+      "tls": [
+        "./node_modules/tls-browserify"
+      ],
+      "child_process": [
+        "./node_modules/@skpm/child_process"
+      ]
+    }
   },
   "files": [
     "src/main.ts",

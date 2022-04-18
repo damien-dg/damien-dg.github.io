@@ -1,16 +1,16 @@
 <div class="flex-container">
-    <div class="flex-icon" (click)="showCards(page-1)">
+    <div class="flex-icon" (click)="prevPage()">
         <img *ngIf="page != 1" src="/assets/left_arrow.png" class="icon">
         <img *ngIf="page == 1" src="/assets/left_arrow.png" class="icon hidden">
     </div>
-    <div class="flex" *ngIf="data">
-        <div class="card" *ngFor="let card of data;">
-            <img [ngClass]="isMaxClass(card)" class="resize clickable" src="{{getCardUrl(card)}}" (click)="addCardToDecklist(card)"
+    <div class="flex" *ngIf="cards()">
+        <div class="card" *ngFor="let card of cards() | slice:(page-1) * 8:page * 8">
+            <img [ngClass]="isMaxClass(card)" class="resize clickable" src="{{card.link}}" (click)="addCardToDecklist(card)"
              (contextmenu)="removeFromDecklist(card)">
         </div>
     </div>
     <p *ngIf="error" class="error">{{error | json}}</p>
-    <div class="flex-icon" (click)="showCards(page+1)">
+    <div class="flex-icon" (click)="nextPage()">
         <img src="/assets/right_arrow.png" class="icon">
     </div>
 </div>
