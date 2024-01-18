@@ -11,7 +11,7 @@ import { Card } from '../card';
 })
 export class CardbookService {
 
-  imgurClientId: string = "e06620a35d4ad65"
+  imgurClientId: string = "2hXxdec"
   imgurAlbumUri: string = "https://api.imgur.com/3/album/GbL8xld"
   cardMetadata: Array<ImgurImage> = [];
   cards: Array<Card> = [];
